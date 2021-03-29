@@ -4,14 +4,16 @@ using ConsoleApp1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsoleApp1.Migrations
 {
     [DbContext(typeof(testingContext))]
-    partial class testingContextModelSnapshot : ModelSnapshot
+    [Migration("20210329095407_DeletedPrivateAndTestCustomer")]
+    partial class DeletedPrivateAndTestCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,34 +139,6 @@ namespace ConsoleApp1.Migrations
                     b.ToTable("Tests");
                 });
 
-            modelBuilder.Entity("ConsoleApp1.Models.PrivateCustomer", b =>
-                {
-                    b.HasBaseType("ConsoleApp1.Models.Customer");
-
-                    b.Property<string>("CPR")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("PrivateCustomer");
-                });
-
-            modelBuilder.Entity("ConsoleApp1.Models.TestCustomer", b =>
-                {
-                    b.HasBaseType("ConsoleApp1.Models.Customer");
-
-                    b.Property<string>("CVR")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EAN")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("TestCustomer");
-                });
-
             modelBuilder.Entity("ConsoleApp1.Models.Order", b =>
                 {
                     b.HasOne("ConsoleApp1.Models.Customer", "Customer")
@@ -193,32 +167,6 @@ namespace ConsoleApp1.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ConsoleApp1.Models.PrivateCustomer", b =>
-                {
-                    b.HasOne("ConsoleApp1.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConsoleApp1.Models.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("ConsoleApp1.Models.PrivateCustomer", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("ConsoleApp1.Models.TestCustomer", b =>
-                {
-                    b.HasOne("ConsoleApp1.Models.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("ConsoleApp1.Models.TestCustomer", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ConsoleApp1.Models.Customer", b =>

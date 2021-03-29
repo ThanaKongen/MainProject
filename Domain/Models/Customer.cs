@@ -44,5 +44,7 @@ namespace Domain.Models
 
         [ForeignKey("CustomerId")]
         public virtual ICollection<Relationship> Relationships { get; set; }
+
+        public virtual ICollection<CustomerFieldValue> CustomerFieldValues { get; set; }
     }
 }

@@ -18,6 +18,6 @@ namespace ConsoleApp1.Models
         public string? Email { get; set; }
 
 #nullable disable
-        public ICollection<Order> test3s { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

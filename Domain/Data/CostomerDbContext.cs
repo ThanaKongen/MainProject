@@ -18,9 +18,16 @@ namespace Domain.Data
 
         public DbSet<Relationship> Relationship { get; set; }
 
-        //public DbSet<BusinessCustomer> BusinessCustomer { get; set; }
+        public DbSet<BusinessCustomer> BusinessCustomer { get; set; }
 
-        //public DbSet<PrivateCustomer> PrivateCustomer { get; set; }
+        public DbSet<PrivateCustomer> PrivateCustomer { get; set; }
+
+        public DbSet<CompanyCustomerField> CompanyCustomerField { get; set; }
+
+        public DbSet<CustomerField> CustomerField { get; set; }
+
+        public DbSet<CustomerFieldValue> CustomerFieldValue { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

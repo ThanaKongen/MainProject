@@ -8,6 +8,8 @@ namespace Domain.Models
         [Key]
         public int Id { get; set; }
 
-        public virtual ICollection<Customer> Customer { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
+
+        public virtual ICollection<CompanyCustomerField> CompanyCustomerFields { get; set; }
     }
 }

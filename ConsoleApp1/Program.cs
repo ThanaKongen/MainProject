@@ -2,6 +2,7 @@
 using System.Linq;
 using ConsoleApp1.Models;
 using ConsoleApp1.Data;
+using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
@@ -63,6 +64,12 @@ namespace ConsoleApp1
             };
             Context.Add(Ball);
 
+            PrivateCustomer privateCustomer = new PrivateCustomer()
+            {
+                FirstName = "PrivateTest",
+                LastName = "Z",
+                CPR = ""
+            };
             Context.SaveChanges();
 
             //----
