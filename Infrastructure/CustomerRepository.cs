@@ -105,8 +105,8 @@ namespace Infrastructure
         public async Task<BusinessCustomer> LoadBusinessCustomerAsync(int Id)
             => await DbContext.BusinessCustomer.FindAsync(Id);
 
-
-        //Might change this later
+        //Customer
+        //Might change this later 
         public async Task CustomerExistAsync(Customer Entity)
             => await DbContext.Customer.FindAsync(Entity);
 
