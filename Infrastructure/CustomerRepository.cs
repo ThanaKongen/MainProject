@@ -3,14 +3,16 @@ using System;
 using Domain.Models;
 using System.Threading.Tasks;
 using Application.Command;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure
+namespace Infrastructure.Repositories
 {
-    //public class CustomerRepository<TEntity> : ICustomerRepository<TEntity> where TEntity : class, new()
+    //public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     //{
     //    protected readonly CostomerDbContext DbContext;
 
-    //    public CustomerRepository(CostomerDbContext dbContext)
+    //    public Repository(CostomerDbContext dbContext)
     //    {
     //        DbContext = dbContext;
     //    }
@@ -30,7 +32,7 @@ namespace Infrastructure
 
     //    public async Task<TEntity> AddAsync(TEntity Entity)
     //    {
-    //        if (Entity==null)
+    //        if (Entity == null)
     //        {
     //            throw new ArgumentException($"{nameof(AddAsync)} entity must not be null");
     //        }
@@ -68,11 +70,6 @@ namespace Infrastructure
     //            throw new Exception($"{nameof(Entity)} could not be saved: {ex.Message}");
     //        }
     //    }
-
-    //    //public Task<Customer> GetEntityById (int Id)
-    //    //{
-    //    //    return GetAll().FirstOrDefaultAsync(x => x.Id == Id);
-    //    //}
     //}
     public class CustomerRepository : ICustomerRepository, IDisposable
     {
@@ -107,11 +104,17 @@ namespace Infrastructure
 
         //Customer
         //Might change this later 
-        public async Task CustomerExistAsync(Customer Entity)
-            => await DbContext.Customer.FindAsync(Entity);
+        public async Task<bool> CustomerExistsAsync(int Id)
+            => await DbContext.Customer.FindAsync(Id) != null;
 
         public async Task<Customer> LoadCustomerAsync(int Id)
             => await DbContext.Customer.FindAsync(Id);
+
+        public async Task DeleteCustomer(int Id)
+        {
+            var Customer = await DbContext.Customer.FindAsync(Id);
+            DbContext.Customer.Remove(Customer);
+        }
 
         //Address
         public async Task AddAddress(Address Entity)

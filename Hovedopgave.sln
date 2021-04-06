@@ -11,9 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomerService", "Customer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9F34571E-5FBB-495D-A8ED-FB053CFA21E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F4C95A86-A802-4A7A-BC00-290D72A9F787}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F4C95A86-A802-4A7A-BC00-290D72A9F787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{FD14A28F-4844-4076-86EB-25AF34C57AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{FD14A28F-4844-4076-86EB-25AF34C57AF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanBase.Shared", "DanBase.Shared\DanBase.Shared.csproj", "{038F68B0-9EB3-4847-9922-C765683C272A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanBase.Framework", "DanBase.Framework\DanBase.Framework.csproj", "{3996C8F9-C425-4750-B2BC-636D074AA823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,14 @@ Global
 		{FD14A28F-4844-4076-86EB-25AF34C57AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD14A28F-4844-4076-86EB-25AF34C57AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD14A28F-4844-4076-86EB-25AF34C57AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038F68B0-9EB3-4847-9922-C765683C272A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038F68B0-9EB3-4847-9922-C765683C272A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038F68B0-9EB3-4847-9922-C765683C272A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038F68B0-9EB3-4847-9922-C765683C272A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3996C8F9-C425-4750-B2BC-636D074AA823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3996C8F9-C425-4750-B2BC-636D074AA823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3996C8F9-C425-4750-B2BC-636D074AA823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3996C8F9-C425-4750-B2BC-636D074AA823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

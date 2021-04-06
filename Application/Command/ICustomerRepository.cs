@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Application.Command
 {
-    public interface ICustomerRepository /*<TEntity> where TEntity : class, new()*/
+    public interface ICustomerRepository/*<TEntity> where TEntity : class, new()*/
     {
         //Address
         Task AddAddress(Address Entity);
@@ -22,6 +22,6 @@ namespace Application.Command
 
         //Customer
         Task<Customer> LoadCustomerAsync(int Id);
-        Task CustomerExistAsync(Customer Entity);
+        Task<bool> CustomerExistsAsync(int Id);
     }
 }
