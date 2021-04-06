@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanBase.Shared", "DanBase.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanBase.Framework", "DanBase.Framework\DanBase.Framework.csproj", "{3996C8F9-C425-4750-B2BC-636D074AA823}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Microservice", "Customer.Microservice\Customer.Microservice.csproj", "{EB486935-E96C-4155-8589-F28941426550}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{3996C8F9-C425-4750-B2BC-636D074AA823}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3996C8F9-C425-4750-B2BC-636D074AA823}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3996C8F9-C425-4750-B2BC-636D074AA823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB486935-E96C-4155-8589-F28941426550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB486935-E96C-4155-8589-F28941426550}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB486935-E96C-4155-8589-F28941426550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB486935-E96C-4155-8589-F28941426550}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{9F34571E-5FBB-495D-A8ED-FB053CFA21E9} = {F830680D-9310-4123-9F21-8F3FC0302335}
 		{F4C95A86-A802-4A7A-BC00-290D72A9F787} = {F830680D-9310-4123-9F21-8F3FC0302335}
 		{FD14A28F-4844-4076-86EB-25AF34C57AF3} = {F830680D-9310-4123-9F21-8F3FC0302335}
+		{EB486935-E96C-4155-8589-F28941426550} = {F830680D-9310-4123-9F21-8F3FC0302335}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9996EBC9-8ABC-4D4E-9562-CD90409CEC53}
