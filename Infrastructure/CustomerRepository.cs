@@ -6,7 +6,7 @@ using Application.Command;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure
 {
     //public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     //{

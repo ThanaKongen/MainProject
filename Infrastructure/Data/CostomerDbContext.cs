@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,16 @@ namespace Infrastructure.Data
 {
     public class CostomerDbContext : DbContext
     {
+        //private readonly ILoggerFactory Factory;
+
+        //public CostomerDbContext(DbContextOptions<CostomerDbContext> options, ILoggerFactory _Factory):base(options)
+        //{
+        //    Factory = _Factory;
+        //}
+        public CostomerDbContext(DbContextOptions<CostomerDbContext> options):base(options)
+        {
+        }
+
         public DbSet<Company> Company { get; set; }
 
         public DbSet<Customer> Customer { get; set; }

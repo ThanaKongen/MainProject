@@ -8,9 +8,9 @@ namespace Domain.Models
     [Table("PrivateCustomer")]
     public class PrivateCustomer : Customer
     {
-        public PrivateCustomer(int id, string firstName, string lastName, string accountNo)
+        public PrivateCustomer(int companyId, string firstName, string lastName, string accountNo)
         {
-            Id = id;
+            CompanyId = companyId;
             FirstName = firstName;
             LastName = lastName;
             AccountNo = accountNo;

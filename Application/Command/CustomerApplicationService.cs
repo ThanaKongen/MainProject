@@ -29,11 +29,11 @@ namespace Application.Command
         }
         private async Task HandleCreate(AddCustomer cmd)
         {
-            if (await CustomerRepository.CustomerExistsAsync(cmd.Id))
-                throw new InvalidOperationException($"Entity with id {cmd.Id} already exists");
+            //if (await CustomerRepository.CustomerExistsAsync(cmd.Id))
+            //    throw new InvalidOperationException($"Entity with id {cmd.Id} already exists");
 
             var Customer = new Domain.Models.PrivateCustomer(
-                cmd.Id,
+                cmd.CompanyId,
                 cmd.FirstName,
                 cmd.LastName,
                 cmd.AccountNo

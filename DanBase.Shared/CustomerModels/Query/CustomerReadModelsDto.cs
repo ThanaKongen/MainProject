@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DanBase.Shared.CustomerModels.Query
 {
-    public static class ReadModelsDto
+    public static class CustomerReadModelsDto
     {
         public class GetCustomerDetails
         {

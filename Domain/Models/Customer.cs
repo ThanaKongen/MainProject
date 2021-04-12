@@ -27,7 +27,7 @@ namespace Domain.Models
         [MaxLength(100)]
         public string Password { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         [MaxLength(255)]
         public string Text { get; set; }
@@ -35,9 +35,9 @@ namespace Domain.Models
         [MaxLength(50)]
         public string AccountNo { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
-        public DateTime LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
 
 
         public virtual ICollection<Address> Addresses { get; set; }

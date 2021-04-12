@@ -9,6 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using DanBase.Framework;
+using Infrastructure.Shared;
+using Application.Command;
+using Infrastructure;
+using Infrastructure.Query;
 
 namespace Customer.Microservice
 {
@@ -24,7 +31,15 @@ namespace Customer.Microservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CostomerDbContext> (options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             //services.AddControllersWithViews();
+
+            services.AddScoped<IUnitOfWork, EFCoreUnitOfWork>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<CustomerQueries>();
+
+            services.AddScoped<CustomerApplicationService>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
