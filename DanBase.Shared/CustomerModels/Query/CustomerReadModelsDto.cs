@@ -19,7 +19,7 @@ namespace DanBase.Shared.CustomerModels.Query
 
             public string Password { get; set; }
 
-            public DateTime Birthday { get; set; }
+            //public DateTime Birthday { get; set; }
 
             public string Text { get; set; }
 

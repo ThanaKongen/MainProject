@@ -9,15 +9,15 @@ namespace Infrastructure.Data
 {
     public class CostomerDbContext : DbContext
     {
-        //private readonly ILoggerFactory Factory;
+        private readonly ILoggerFactory Factory;
 
-        //public CostomerDbContext(DbContextOptions<CostomerDbContext> options, ILoggerFactory _Factory):base(options)
-        //{
-        //    Factory = _Factory;
-        //}
-        public CostomerDbContext(DbContextOptions<CostomerDbContext> options):base(options)
+        public CostomerDbContext(DbContextOptions<CostomerDbContext> options, ILoggerFactory _Factory) : base(options)
         {
+            Factory = _Factory;
         }
+        //public CostomerDbContext(DbContextOptions<CostomerDbContext> options) : base(options)
+        //{
+        //}
 
         public DbSet<Company> Company { get; set; }
 

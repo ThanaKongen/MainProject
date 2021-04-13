@@ -8,12 +8,22 @@ namespace Domain.Models
     [Table("PrivateCustomer")]
     public class PrivateCustomer : Customer
     {
-        public PrivateCustomer(int companyId, string firstName, string lastName, string accountNo)
+        //Has to be an empty contructor else EF will fail
+        public PrivateCustomer()
+        {
+
+        }
+        public PrivateCustomer(int companyId, string firstName, string lastName, string userName, string password, string text, string accountNo, DateTime created, DateTime lastUpdate)
         {
             CompanyId = companyId;
             FirstName = firstName;
             LastName = lastName;
+            Username = userName;
+            Password = password;
+            Text = text;
             AccountNo = accountNo;
+            Created = created;
+            LastUpdate = lastUpdate;
         }
 
         [MaxLength(10)]

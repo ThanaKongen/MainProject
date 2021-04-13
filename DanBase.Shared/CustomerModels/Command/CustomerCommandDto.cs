@@ -1,6 +1,7 @@
 ﻿using DanBase.Shared.Enum;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace DanBase.Shared.CustomerModels.Command
@@ -15,19 +16,19 @@ namespace DanBase.Shared.CustomerModels.Command
 
             public string LastName { get; set; }
 
-            //public string Username { get; set; }
+            public string Username { get; set; }
 
-            //public string Password { get; set; }
+            public string Password { get; set; }
 
             //public DateTime Birthday { get; set; }
 
-            //public string Text { get; set; }
+            public string Text { get; set; }
 
             public string AccountNo { get; set; }
 
-            //public DateTime Created { get; set; }
+            public readonly DateTime Created = DateTime.Now;
 
-            //public DateTime LastUpdate { get; set; }
+            public readonly DateTime LastUpdate = DateTime.Now;
 
             public CustomerTypeEnum CustomerType {get;set;}
         }

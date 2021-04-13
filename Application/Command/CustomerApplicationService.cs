@@ -36,7 +36,12 @@ namespace Application.Command
                 cmd.CompanyId,
                 cmd.FirstName,
                 cmd.LastName,
-                cmd.AccountNo
+                cmd.Username,
+                cmd.Password,
+                cmd.Text,
+                cmd.AccountNo,
+                cmd.Created,
+                cmd.LastUpdate
                 );
 
             await CustomerRepository.AddPrivateCustomerAsync(Customer);
