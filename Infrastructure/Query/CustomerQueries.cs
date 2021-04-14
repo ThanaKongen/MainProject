@@ -22,11 +22,18 @@ namespace Infrastructure.Query
         {
             return await Context.Customer.Select(x => new GetCustomerDetails
             {
+                CompanyId = x.CompanyId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                AccountNo = x.AccountNo
+                Username = x.Username, 
+                Password = x.Password,
+                Text = x.Text,
+                AccountNo = x.AccountNo, 
+                Created = (DateTime)x.Created,
+                LastUpdate = (DateTime)x.LastUpdate
+
             })
-                .OrderByDescending(x => x.FirstName)
+                .OrderByDescending(x => x.Created)
                 .ToListAsync();
         }
 
@@ -36,9 +43,15 @@ namespace Infrastructure.Query
                 .Where(x => x.Id == query.Id)
                 .Select(x => new GetCustomerDetails
                 {
+                    CompanyId = x.CompanyId,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
-                    AccountNo = x.AccountNo
+                    Username = x.Username,
+                    Password = x.Password,
+                    Text = x.Text,
+                    AccountNo = x.AccountNo,
+                    Created = (DateTime)x.Created,
+                    LastUpdate = (DateTime)x.LastUpdate
                 })
                 .FirstOrDefaultAsync();
         }
