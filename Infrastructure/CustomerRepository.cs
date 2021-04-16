@@ -8,69 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    //public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
-    //{
-    //    protected readonly CostomerDbContext DbContext;
-
-    //    public Repository(CostomerDbContext dbContext)
-    //    {
-    //        DbContext = dbContext;
-    //    }
-
-    //    public IQueryable<TEntity> GetAll()
-    //    {
-    //        try
-    //        {
-    //            return DbContext.Set<TEntity>();
-    //        }
-    //        catch (Exception ex)
-    //        {
-
-    //            throw new Exception($"Couldn't retrieve entities: {ex.Message}");
-    //        }
-    //    }
-
-    //    public async Task<TEntity> AddAsync(TEntity Entity)
-    //    {
-    //        if (Entity == null)
-    //        {
-    //            throw new ArgumentException($"{nameof(AddAsync)} entity must not be null");
-    //        }
-
-    //        try
-    //        {
-    //            await DbContext.AddAsync(Entity);
-    //            await DbContext.SaveChangesAsync();
-
-    //            return Entity;
-    //        }
-    //        catch (Exception ex)
-    //        {
-
-    //            throw new Exception($"{nameof(Entity)} could not be saved: {ex.Message}");
-    //        }
-    //    }
-
-    //    public async Task<TEntity> UpdateAsync(TEntity Entity)
-    //    {
-    //        if (Entity == null)
-    //        {
-    //            throw new ArgumentException($"{nameof(UpdateAsync)} entity must not be null");
-    //        }
-
-    //        try
-    //        {
-    //            DbContext.Update(Entity);
-    //            await DbContext.SaveChangesAsync();
-
-    //            return Entity;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw new Exception($"{nameof(Entity)} could not be saved: {ex.Message}");
-    //        }
-    //    }
-    //}
     public class CustomerRepository : ICustomerRepository, IDisposable
     {
         private readonly CostomerDbContext DbContext;
@@ -107,20 +44,26 @@ namespace Infrastructure
 
         public async Task<BusinessCustomer> LoadBusinessCustomerAsync(int Id)
             => await DbContext.BusinessCustomer.FindAsync(Id);
+        
+        public async Task DeleteBusinessCustomer(int Id)
+        {
+            var customer = await DbContext.BusinessCustomer.FindAsync(Id);
+            DbContext.BusinessCustomer.Remove(customer);
+        }
 
         //Customer
         //Might change this later 
-        public async Task<bool> CustomerExistsAsync(int Id)
-            => await DbContext.Customer.FindAsync(Id) != null;
+        //public async Task<bool> CustomerExistsAsync(int Id)
+        //    => await DbContext.Customer.FindAsync(Id) != null;
 
-        public async Task<Customer> LoadCustomerAsync(int Id)
-            => await DbContext.Customer.FindAsync(Id);
+        //public async Task<Customer> LoadCustomerAsync(int Id)
+        //    => await DbContext.Customer.FindAsync(Id);
 
-        public async Task DeleteCustomer(int Id)
-        {
-            var Customer = await DbContext.Customer.FindAsync(Id);
-            DbContext.Customer.Remove(Customer);
-        }
+        //public async Task DeleteCustomer(int Id)
+        //{
+        //    var Customer = await DbContext.Customer.FindAsync(Id);
+        //    DbContext.Customer.Remove(Customer);
+        //}
 
         //Address
         public async Task AddAddress(Address Entity)

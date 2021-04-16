@@ -37,8 +37,10 @@ namespace Customer.Microservice
             services.AddScoped<IUnitOfWork, EFCoreUnitOfWork>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<PrivateCustomerQueries>();
+            services.AddScoped<BusinessCustomerQueries>();
 
-            services.AddScoped<CustomerApplicationService>();
+            services.AddScoped<PrivateCustomerApplicationService>();
+            services.AddScoped<BusinessCustomerApplicationService>();
 
             services.AddControllers();
 

@@ -14,6 +14,7 @@ namespace Application.Command
         Task AddBusinessCustomer(BusinessCustomer Entity);
         Task<bool> BusinessCustomerExistsAsync(int Id);
         Task<BusinessCustomer> LoadBusinessCustomerAsync(int Id);
+        Task DeleteBusinessCustomer(int Id);
 
         //Private Customer
         Task AddPrivateCustomerAsync(PrivateCustomer Entity);
@@ -22,7 +23,7 @@ namespace Application.Command
         Task DeletePrivateCustomer(int Id);
 
         //Customer
-        Task<Customer> LoadCustomerAsync(int Id);
-        Task<bool> CustomerExistsAsync(int Id);
+        //Task<Customer> LoadCustomerAsync(int Id);
+        //Task<bool> CustomerExistsAsync(int Id);
     }
 }

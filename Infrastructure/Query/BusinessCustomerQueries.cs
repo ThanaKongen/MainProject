@@ -4,32 +4,37 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using static DanBase.Shared.CustomerModels.Query.PrivateCustomerReadModelsDto;
+using static DanBase.Shared.CustomerModels.Query.BusinessCustomerReadModelsDto;
 using System.Linq;
 
 namespace Infrastructure.Query
 {
-    public class PrivateCustomerQueries
+    public class BusinessCustomerQueries
     {
         private readonly CostomerDbContext Context;
 
-        public PrivateCustomerQueries(CostomerDbContext _context)
+        public BusinessCustomerQueries(CostomerDbContext _context)
         {
             Context = _context;
         }
 
         public async Task<List<GetCustomerDetails>> GetAllCustomers()
         {
-            return await Context.PrivateCustomer.Select(x => new GetCustomerDetails
+            return await Context.BusinessCustomer.Select(x => new GetCustomerDetails
             {
                 Id = x.Id,
                 CompanyId = x.CompanyId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                Username = x.Username, 
+                CVR = x.CVR,
+                EAN = x.EAN,
+                WWW = x.WWW,
+                VatCode = x.VatCode,
+                DebitorNo = x.DebitorNo,
+                Username = x.Username,
                 Password = x.Password,
                 Text = x.Text,
-                AccountNo = x.AccountNo, 
+                AccountNo = x.AccountNo,
                 Created = (DateTime)x.Created,
                 LastUpdate = (DateTime)x.LastUpdate
 
@@ -38,9 +43,9 @@ namespace Infrastructure.Query
                 .ToListAsync();
         }
 
-        public async Task<GetCustomerDetails> GetCustomerById(PrivateCustomerQueryModels.GetCustomerById query)
+        public async Task<GetCustomerDetails> GetCustomerById(BusinessCustomerQueryModels.GetCustomerById query)
         {
-            return await Context.PrivateCustomer
+            return await Context.BusinessCustomer
                 .Where(x => x.Id == query.Id)
                 .Select(x => new GetCustomerDetails
                 {
@@ -48,6 +53,11 @@ namespace Infrastructure.Query
                     CompanyId = x.CompanyId,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
+                    CVR = x.CVR,
+                    EAN = x.EAN,
+                    WWW = x.WWW,
+                    VatCode = x.VatCode,
+                    DebitorNo = x.DebitorNo,
                     Username = x.Username,
                     Password = x.Password,
                     Text = x.Text,
@@ -57,6 +67,5 @@ namespace Infrastructure.Query
                 })
                 .FirstOrDefaultAsync();
         }
-
     }
 }

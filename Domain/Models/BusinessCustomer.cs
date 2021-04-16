@@ -22,5 +22,45 @@ namespace Domain.Models
 
         [MaxLength(50)]
         public string DebitorNo { get; set; }
+
+        public BusinessCustomer()
+        {
+
+        }
+
+        public BusinessCustomer(int companyId, string firstName, string lastName, string cvr, string ean, string www, int vatcode, string debitorNo, string userName, string password, string text, string accountNo, DateTime created, DateTime lastUpdate)
+        {
+            CompanyId = companyId;
+            FirstName = firstName;
+            LastName = lastName;
+            CVR = cvr;
+            EAN = ean;
+            WWW = www;
+            VatCode = vatcode;
+            DebitorNo = debitorNo;
+            Username = userName;
+            Password = password;
+            Text = text;
+            AccountNo = accountNo;
+            Created = created;
+            LastUpdate = lastUpdate;
+        }
+
+        public void BusinessCustomerUpdate(int companyId, string firstName, string lastName, string cvr, string ean, string www, int vatcode, string debitorNo, string userName, string password, string text, string accountNo, DateTime lastUpdate)
+        {
+            CompanyId = companyId;
+            FirstName = firstName;
+            LastName = lastName;
+            CVR = cvr;
+            EAN = ean;
+            WWW = www;
+            VatCode = vatcode;
+            DebitorNo = debitorNo;
+            Username = userName;
+            Password = password;
+            Text = text;
+            AccountNo = accountNo;
+            LastUpdate = lastUpdate;
+        }
     }
 }

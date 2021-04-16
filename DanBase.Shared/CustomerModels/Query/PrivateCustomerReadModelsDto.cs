@@ -1,11 +1,10 @@
-﻿using DanBase.Shared.Enum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DanBase.Shared.CustomerModels.Query
 {
-    public static class CustomerReadModelsDto
+    public static class PrivateCustomerReadModelsDto
     {
         public class GetCustomerDetails
         {
@@ -30,8 +29,6 @@ namespace DanBase.Shared.CustomerModels.Query
             public DateTime? Created { get; set; }
 
             public DateTime? LastUpdate { get; set; }
-
-            public CustomerTypeEnum CustomerType { get; set; }
         }
     }
 }
