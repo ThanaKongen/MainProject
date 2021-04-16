@@ -16,6 +16,8 @@ namespace DanBase.Shared.CustomerModels.Command
 
             public string LastName { get; set; }
 
+            public string CPR { get; set; }
+
             public string Username { get; set; }
 
             public string Password { get; set; }
@@ -35,6 +37,8 @@ namespace DanBase.Shared.CustomerModels.Command
 
         public class UpdateCustomer
         {
+            public int Id { get; set; }
+
             public int CompanyId { get; set; }
 
             public string FirstName { get; set; }
@@ -45,17 +49,15 @@ namespace DanBase.Shared.CustomerModels.Command
 
             public string Password { get; set; }
 
-            public DateTime Birthday { get; set; }
+            //public DateTime Birthday { get; set; }
 
             public string Text { get; set; }
 
             public string AccountNo { get; set; }
 
-            public DateTime Created { get; set; }
+            public DateTime LastUpdate = DateTime.Now;
 
-            public DateTime LastUpdate { get; set; }
-
-            public CustomerTypeEnum CustomerType { get; set; }
+            //public CustomerTypeEnum CustomerType { get; set; }
         }
 
         public class DeleteCustomer

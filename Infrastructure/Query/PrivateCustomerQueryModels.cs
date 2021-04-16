@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Infrastructure.Query
 {
-    public static class CustomerQueryModels
+    public static class PrivateCustomerQueryModels
     {
         public class GetCustomerById
         {

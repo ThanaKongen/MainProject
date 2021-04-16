@@ -9,19 +9,20 @@ using System.Linq;
 
 namespace Infrastructure.Query
 {
-    public class CustomerQueries
+    public class PrivateCustomerQueries
     {
         private readonly CostomerDbContext Context;
 
-        public CustomerQueries(CostomerDbContext _context)
+        public PrivateCustomerQueries(CostomerDbContext _context)
         {
             Context = _context;
         }
 
         public async Task<List<GetCustomerDetails>> GetAllCustomers()
         {
-            return await Context.Customer.Select(x => new GetCustomerDetails
+            return await Context.PrivateCustomer.Select(x => new GetCustomerDetails
             {
+                Id = x.Id,
                 CompanyId = x.CompanyId,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
@@ -37,12 +38,13 @@ namespace Infrastructure.Query
                 .ToListAsync();
         }
 
-        public async Task<GetCustomerDetails> GetCustomerById(CustomerQueryModels.GetCustomerById query)
+        public async Task<GetCustomerDetails> GetCustomerById(PrivateCustomerQueryModels.GetCustomerById query)
         {
-            return await Context.Customer
+            return await Context.PrivateCustomer
                 .Where(x => x.Id == query.Id)
                 .Select(x => new GetCustomerDetails
                 {
+                    Id = x.Id,
                     CompanyId = x.CompanyId,
                     FirstName = x.FirstName,
                     LastName = x.LastName,

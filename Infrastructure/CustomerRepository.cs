@@ -92,6 +92,12 @@ namespace Infrastructure
         public async Task<PrivateCustomer> LoadPrivateCustomerAsync(int Id)
             => await DbContext.PrivateCustomer.FindAsync(Id);
 
+        public async Task DeletePrivateCustomer(int Id)
+        {
+            var customer = await DbContext.PrivateCustomer.FindAsync(Id);
+            DbContext.PrivateCustomer.Remove(customer);
+        }
+
         //Business Customer
         public async Task AddBusinessCustomer(BusinessCustomer Entity)
             => await DbContext.BusinessCustomer.AddAsync(Entity);

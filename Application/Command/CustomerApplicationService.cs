@@ -23,6 +23,8 @@ namespace Application.Command
             return Command switch
             {
                 AddCustomer cmd => HandleCreate(cmd),
+                UpdateCustomer cmd => HandleUpdate(cmd.Id, c => c.PrivateCustomerUpdate(cmd.CompanyId, cmd.FirstName, cmd.LastName, cmd.Username, cmd.Password, cmd.Text, cmd.AccountNo,cmd.LastUpdate)),
+                DeleteCustomer cmd => HandleDelete(cmd.Id),
 
                 _ => Task.CompletedTask
             };
@@ -36,6 +38,7 @@ namespace Application.Command
                 cmd.CompanyId,
                 cmd.FirstName,
                 cmd.LastName,
+                cmd.CPR,
                 cmd.Username,
                 cmd.Password,
                 cmd.Text,
@@ -45,6 +48,35 @@ namespace Application.Command
                 );
 
             await CustomerRepository.AddPrivateCustomerAsync(Customer);
+            await UnitOfWork.Commit();
+        }
+
+        private async Task HandleUpdate(int Id, Action<Domain.Models.PrivateCustomer> action)
+        {
+            var customer = await CustomerRepository.LoadPrivateCustomerAsync(Id);
+            
+
+            if (customer == null)
+            {
+                throw new InvalidOperationException($"Id with Id {Id} cannot be found");
+            }
+
+            action(customer);
+
+            await UnitOfWork.Commit();
+        }
+
+        private async Task HandleDelete(int id)
+        {
+            var customer = await CustomerRepository.LoadPrivateCustomerAsync(id);
+
+            if (customer == null)
+            {
+                throw new InvalidOperationException($"Customer with id {id} cannot be found");
+            }
+
+            await CustomerRepository.DeletePrivateCustomer(id);
+
             await UnitOfWork.Commit();
         }
     }

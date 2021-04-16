@@ -9,6 +9,8 @@ namespace DanBase.Shared.CustomerModels.Query
     {
         public class GetCustomerDetails
         {
+            public int Id { get; set; }
+
             public int CompanyId { get; set; }
 
             public string FirstName { get; set; }

@@ -8,16 +8,18 @@ using Serilog;
 
 namespace Customer.Microservice.Controllers
 {
-    [Route("/Customer")]
-    public class CustomerQueryController : Controller
+    [Route("/PrivateCustomer")]
+    public class PrivateCustomerQueryController : Controller
     {
-        private static ILogger Log = Log.ForContext<CustomerQueryController>();
-        private readonly CustomerQueries CustomerQueries;
+        private static ILogger Log = Log.ForContext<PrivateCustomerQueryController>();
+        private readonly PrivateCustomerQueries CustomerQueries;
 
-        public CustomerQueryController(CustomerQueries customerQueries)
+        public PrivateCustomerQueryController(PrivateCustomerQueries customerQueries)
         {
             CustomerQueries = customerQueries;
         }
+
+        [Route("GetAll")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -35,7 +37,7 @@ namespace Customer.Microservice.Controllers
 
         [HttpGet]
         [Route("Id")]
-        public async Task<IActionResult> GetCustomerById(CustomerQueryModels.GetCustomerById request)
+        public async Task<IActionResult> GetCustomerById(PrivateCustomerQueryModels.GetCustomerById request)
         {
             try
             {

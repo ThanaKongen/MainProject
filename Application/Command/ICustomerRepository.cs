@@ -19,6 +19,7 @@ namespace Application.Command
         Task AddPrivateCustomerAsync(PrivateCustomer Entity);
         Task<PrivateCustomer> LoadPrivateCustomerAsync(int Id);
         Task<bool> PrivateCustomerExistsAsync(int Id);
+        Task DeletePrivateCustomer(int Id);
 
         //Customer
         Task<Customer> LoadCustomerAsync(int Id);
