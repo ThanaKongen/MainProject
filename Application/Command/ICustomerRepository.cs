@@ -9,6 +9,7 @@ namespace Application.Command
         Task AddAddress(Address Entity);
         Task<bool> AddressExistsAsync(int Id);
         Task<Address> LoadAddressAsync(int Id);
+        Task DeleteAddress(int Id);
 
         //Business Customer
         Task AddBusinessCustomer(BusinessCustomer Entity);

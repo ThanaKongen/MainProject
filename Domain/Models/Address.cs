@@ -26,5 +26,28 @@ namespace Domain.Models
 
         [MaxLength(50)]
         public string Country { get; set; }
+
+        public Address()
+        {
+
+        }
+
+        public Address(int customerId, string street, string zip, string city, string country)
+        {
+            CustomerId = customerId;
+            Street = street;
+            Zip = zip;
+            City = city;
+            Country = country;
+        }
+
+        public void AddressUpdate(int customerId, string street, string zip, string city, string country)
+        {
+            CustomerId = customerId;
+            Street = street;
+            Zip = zip;
+            City = city;
+            Country = country;
+        }
     }
 }

@@ -51,6 +51,22 @@ namespace Infrastructure
             DbContext.BusinessCustomer.Remove(customer);
         }
 
+        //Address
+        public async Task AddAddress(Address Entity)
+            => await DbContext.Address.AddAsync(Entity);
+
+        public async Task<bool> AddressExistsAsync(int Id)
+            => await DbContext.Address.FindAsync(Id) != null;
+
+        public async Task<Address> LoadAddressAsync(int Id)
+            => await DbContext.Address.FindAsync(Id);
+
+        public async Task DeleteAddress(int Id)
+        {
+            var address = await DbContext.Address.FindAsync(Id);
+            DbContext.Address.Remove(address);
+        }
+
         //Customer
         //Might change this later 
         //public async Task<bool> CustomerExistsAsync(int Id)
@@ -65,15 +81,6 @@ namespace Infrastructure
         //    DbContext.Customer.Remove(Customer);
         //}
 
-        //Address
-        public async Task AddAddress(Address Entity)
-            => await DbContext.Address.AddAsync(Entity);
-
-        public async Task<bool> AddressExistsAsync(int Id)
-            => await DbContext.Address.FindAsync(Id) != null;
-
-        public async Task<Address> LoadAddressAsync(int Id)
-            => await DbContext.Address.FindAsync(Id);
 
         //
     }
