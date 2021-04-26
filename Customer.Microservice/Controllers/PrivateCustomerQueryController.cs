@@ -30,7 +30,7 @@ namespace Customer.Microservice.Controllers
             }
             catch (Exception e)
             {
-
+                e.Message.ToString();
                 throw;
             }
         }
@@ -46,7 +46,7 @@ namespace Customer.Microservice.Controllers
             }
             catch (Exception e)
             {
-
+                e.Message.ToString();
                 throw;
             }
         }

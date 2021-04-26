@@ -8,6 +8,7 @@ using Infrastructure.Query;
 
 namespace Customer.Microservice.Controllers
 {
+    [Route("/Address")]
     public class AddressQueryController : Controller
     {
         private static ILogger Log = Log.ForContext<AddressQueryController>();
@@ -29,7 +30,7 @@ namespace Customer.Microservice.Controllers
             }
             catch (Exception e)
             {
-
+                e.Message.ToString();
                 throw;
             }
         }
@@ -45,7 +46,7 @@ namespace Customer.Microservice.Controllers
             }
             catch (Exception e)
             {
-
+                e.Message.ToString();
                 throw;
             }
         }
