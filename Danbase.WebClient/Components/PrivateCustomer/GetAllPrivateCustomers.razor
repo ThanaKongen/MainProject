@@ -1,0 +1,54 @@
+﻿@inject IPrivateCustomerService PrivateCustomerService
+
+<h3>GetAllPrivateCustomers</h3>
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+
+@if (Customer != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>CompanyId</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>CPR</td>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Text</td>
+                <td>Account</td>
+            </tr>
+        </thead>
+        @foreach (var Customer in Customer)
+        {
+            <tr>
+                <td>@Customer.companyId</td>
+                <td>@Customer.firstName</td>
+                <td>@Customer.lastName</td>
+                <td>@Customer.username</td>
+                <td>@Customer.password</td>
+                <td>@Customer.text</td>
+                <td>@Customer.account</td>
+            </tr>
+        }
+
+    </table>
+}
+
+@code {
+    private bool Loading;
+
+    private List<Models.PrivateCustomer.PrivateCustomerDetails> Customer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Loading = true;
+
+        Customer = await PrivateCustomerService.GetAll();
+
+        Loading = false;
+    }
+}
