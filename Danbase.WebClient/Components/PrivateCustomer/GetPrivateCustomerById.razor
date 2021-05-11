@@ -1,0 +1,62 @@
+﻿@inject IPrivateCustomerService PrivateCustomerService
+@page "/PrivateCustomer/{Id:int}"
+
+<h3>GetPrivateCustomerById</h3>
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+
+@if (Customer != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>CompanyId</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>CPR</td>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Text</td>
+                <td>Account</td>
+                <td>Created</td>
+                <td>LastUpdated</td>
+            </tr>
+        </thead>
+            <tr>
+                <td>@Customer.id</td>
+                <td>@Customer.companyId</td>
+                <td>@Customer.firstName</td>
+                <td>@Customer.lastName</td>
+                <td>@Customer.cpr</td>
+                <td>@Customer.username</td>
+                <td>@Customer.password</td>
+                <td>@Customer.text</td>
+                <td>@Customer.accountNo</td>
+                <td>@Customer.created</td>
+                <td>@Customer.lastUpdated</td>
+            </tr>       
+
+    </table>
+}
+
+@code {
+    private bool Loading;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Models.PrivateCustomer.PrivateCustomerDetails Customer;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Loading = true;
+
+        Customer = await PrivateCustomerService.GetById(Id);
+
+        Loading = false;
+    }
+}

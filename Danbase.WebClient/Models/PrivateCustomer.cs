@@ -20,7 +20,7 @@ namespace Danbase.WebClient.Models
 
             public string lastName { get; set; }
 
-            //public string cPR { get; set; }
+            public string cpr { get; set; }
 
             public string username { get; set; }
 
@@ -28,7 +28,7 @@ namespace Danbase.WebClient.Models
 
             public string text { get; set; }
 
-            public string account { get; set; }
+            public string accountNo { get; set; }
 
             public DateTime created { get; set; }
 

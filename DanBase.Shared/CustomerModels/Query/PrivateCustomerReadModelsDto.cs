@@ -16,6 +16,8 @@ namespace DanBase.Shared.CustomerModels.Query
 
             public string? LastName { get; set; }
 
+            public string? CPR { get; set; }
+
             public string? Username { get; set; }
 
             public string? Password { get; set; }
