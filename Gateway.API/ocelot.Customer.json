@@ -32,7 +32,7 @@
 
     //Create PrivateCustomer
     {
-      "DownstreamPathTemplate": "/PrivateCustomer?CompanyId={CompanyId}&FirstName={FirstName}&LastName={LastName}&CPR={CPR}&Username={Username}&Password={Password}&Text={Text}&AccountNo={AccountNo}",
+      "DownstreamPathTemplate": "/PrivateCustomer/Create?CompanyId={CompanyId}&FirstName={FirstName}&LastName={LastName}&CPR={CPR}&Username={Username}&Password={Password}&Text={Text}&AccountNo={AccountNo}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -40,7 +40,7 @@
           "Port": 44329
         }
       ],
-      "UpstreamPathTemplate": "/gateway/PrivateCustomer?CompanyId={CompanyId}&FirstName={FirstName}&LastName={LastName}&CPR={CPR}&Username={Username}&Password={Password}&Text={Text}&AccountNo={AccountNo}",
+      "UpstreamPathTemplate": "/gateway/PrivateCustomer/Create?CompanyId={CompanyId}&FirstName={FirstName}&LastName={LastName}&CPR={CPR}&Username={Username}&Password={Password}&Text={Text}&AccountNo={AccountNo}",
       "UpstreamHttpMethod": [ "POST" ]
     },
 

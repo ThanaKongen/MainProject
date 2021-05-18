@@ -22,6 +22,7 @@ namespace Customer.Microservice.Controllers
             Application = _Application;
         }
 
+        [Route("Create")]
         [HttpPost]
         public Task<IActionResult> PostCustomer(PrivateCustomerCommandDto.AddCustomer request)
             => RequestHandler.HandleCommand(request, Application.Handle, Log);

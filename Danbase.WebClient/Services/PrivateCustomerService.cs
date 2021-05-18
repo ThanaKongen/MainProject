@@ -32,9 +32,9 @@ namespace Danbase.WebClient.Services
         {
             var Response = await Client.PostAsJsonAsync
                 (
-                $"gateway/PrivateCustomer?CompanyId={CustomerDto.CompanyId}&FirstName={CustomerDto.FirstName}" +
-                $"&LastName={CustomerDto.LastName}&CPR={CustomerDto.CPR}&Username={CustomerDto.Username}&Password={CustomerDto.Password}" +
-                $"&Text={CustomerDto.Text}&AccountNo={CustomerDto.AccountNo}",CustomerDto
+                $"PrivateCustomer/Create?CompanyId={CustomerDto.CompanyId}&FirstName={CustomerDto.FirstName}&LastName={CustomerDto.LastName}" +
+                $"&CPR={CustomerDto.CPR}&Username={CustomerDto.Username}&Password={CustomerDto.Password}&Text={CustomerDto.Text}" +
+                $"&AccountNo={CustomerDto.AccountNo}",CustomerDto
                 );
 
             if (Response.IsSuccessStatusCode)
@@ -81,6 +81,26 @@ namespace Danbase.WebClient.Services
             {
 
                 throw e;
+            }
+        }
+
+        public async Task Update(Models.PrivateCustomer.PrivateCustomerDetails CustomerDto)
+        {
+            var Response = await Client.PutAsJsonAsync
+                (
+                $"PrivateCustomer/Update?Id={CustomerDto.id}&CompanyId={CustomerDto.companyId}&FirstName={CustomerDto.firstName}" +
+                $"&LastName={CustomerDto.lastName}&Username={CustomerDto.username}&Password={CustomerDto.password}" +
+                $"&Text={CustomerDto.text}&AccountNo={CustomerDto.accountNo}",CustomerDto
+                );
+
+            if (Response.IsSuccessStatusCode)
+            {
+
+                await Js.InvokeVoidAsync("alert", $"Kunden er nu opdateret!");
+            }
+            else
+            {
+                await Js.InvokeVoidAsync("alert", $"Noget gik galt! Prøv igen.");
             }
         }
     }

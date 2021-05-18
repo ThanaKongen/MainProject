@@ -1,9 +1,15 @@
 ﻿@page "/PrivateCustomer"
 @using Danbase.WebClient.Components.PrivateCustomer
+@inject NavigationManager Navigation
 <h3>PrivateCustomer</h3>
 
-<GetAllPrivateCustomers></GetAllPrivateCustomers>
+<GetAllCustomers></GetAllCustomers>
+<button @onclick="Create">Create</button>
 
 @code {
 
+    void Create()
+    {
+        Navigation.NavigateTo("/PrivateCustomer/Create");
+    }
 }

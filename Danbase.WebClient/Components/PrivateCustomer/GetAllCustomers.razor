@@ -1,6 +1,5 @@
 ﻿@inject IPrivateCustomerService PrivateCustomerService
 @inject NavigationManager NavigationManager
-<h3>GetAllPrivateCustomers</h3>
 
 @if (Loading == true)
 {
@@ -28,7 +27,6 @@
         @foreach (var Customer in Customer)
         {
     <tr>
-        @*<td><button @onclick="()=>GoToProfile(Customer.id)">@Customer.id </button></td>*@
         <td><a href="/PrivateCustomer/@Customer.id">@Customer.id</a></td>
         <td>@Customer.companyId</td>
         <td>@Customer.firstName</td>
@@ -59,11 +57,6 @@
 
         Loading = false;
     }
-
-    //void GoToProfile(int Id)
-    //{
-    //    NavigationManager.NavigateTo($"/PrivateCustomer/{Id}");
-    //}
 
 
 }
