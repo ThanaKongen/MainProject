@@ -32,6 +32,8 @@ namespace Danbase.WebClient
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<IPrivateCustomerService, PrivateCustomerService>();
+            services.AddScoped<IBusinessCustomerService, BusinessCustomerService>();
+            services.AddScoped<IAddressService, AddressService>();
             services.AddScoped(sp =>
             new HttpClient
             {

@@ -13,5 +13,7 @@ namespace Danbase.WebClient.Services
         Task<Models.PrivateCustomer.PrivateCustomerDetails> GetById(int Id);
 
         Task Update(Models.PrivateCustomer.PrivateCustomerDetails CustomerDto);
+
+        Task Delete(int Id);
     }
 }

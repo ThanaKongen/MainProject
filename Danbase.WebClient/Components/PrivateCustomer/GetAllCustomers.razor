@@ -52,7 +52,7 @@
     protected override async Task OnInitializedAsync()
     {
         Loading = true;
-
+        
         Customer = await PrivateCustomerService.GetAll();
 
         Loading = false;

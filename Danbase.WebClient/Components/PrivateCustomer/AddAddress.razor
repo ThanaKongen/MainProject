@@ -1,0 +1,46 @@
+﻿@page "/PrivateCustomer/AddAddress/{Id:int}"
+@inject IAddressService AddressService
+@using DanBase.Shared.CustomerModels.Command
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+<div class="form-group">
+
+    <h3>AddAddress</h3>
+    <label>Street</label>
+    <input class="form-control" type="text" id="Account" @bind="Address.Street" />
+    <label>Zip</label>
+    <input class="form-control" type="text" id="Account" @bind="Address.Zip" />
+    <label>City</label>
+    <input class="form-control" type="text" id="Account" @bind="Address.City" />
+    <label>Country</label>
+    <input class="form-control" type="text" id="Account" @bind="Address.Country" />
+    <button @onclick="Create">Gem</button>
+</div>
+
+
+
+@code {
+    AddressCommandDto.AddAddress Address = new AddressCommandDto.AddAddress();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private bool Loading;
+    protected override async Task OnInitializedAsync()
+    {
+        Loading = true;
+        Address.CustomerId = Id;
+        Loading = false;
+
+    }
+
+    private void Create()
+    {
+        Loading = true;
+        AddressService.Create(Address);
+        Loading = false;
+    }
+}

@@ -1,5 +1,73 @@
-﻿<h3>EditGetCustomerById</h3>
+﻿@page "/BusinessCustomer/{Id:int}"
+@inject IBusinessCustomerService BusinessCustomerService
+@inject NavigationManager Navi
+@using DanBase.Shared.CustomerModels.Command
+
+
+<h3>Personlige indstillinger</h3>
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+
+@if (Customer != null)
+{
+    <h3>@Customer.FirstName @Customer.LastName</h3>
+    <div class="form-group">
+        <label>Company Id</label>
+        <input class="form-control" type="text" id="CompanyId" @bind="@Customer.CompanyId" @onblur="Update" />
+        <label>First name</label>
+        <input class="form-control" type="text" id="FirstName" @bind="@Customer.FirstName" @onblur="Update" />
+        <label>Last name</label>
+        <input class="form-control" type="text" id="LastName" @bind="@Customer.LastName" @onblur="Update" />
+        <label>CVR</label>
+        <input class="form-control" type="text" id="CPR" @bind="Customer.CVR" @onblur="Update" />
+        <label>EAN</label>
+        <input class="form-control" type="text" id="CPR" @bind="Customer.EAN" @onblur="Update" />
+        <label>WWW</label>
+        <input class="form-control" type="text" id="CPR" @bind="Customer.WWW" @onblur="Update" />
+        <label>Vatcode</label>
+        <input class="form-control" type="text" id="CPR" @bind="Customer.Vatcode" @onblur="Update" />
+        <label>DebitorNo</label>
+        <input class="form-control" type="text" id="CPR" @bind="Customer.DebitorNo" @onblur="Update" />
+        <label>User name</label>
+        <input class="form-control" type="text" id="UserName" @bind="Customer.Username" @onblur="Update" />
+        <label>Password</label>
+        <input class="form-control" type="password" id="Password" @bind="Customer.Password" @onblur="Update" />
+        <label>Text</label>
+        <input class="form-control" type="text" id="Text" @bind="Customer.Text" @onblur="Update" />
+        <label>Account</label>
+        <input class="form-control" type="text" id="Account" @bind="Customer.AccountNo" @onblur="Update" />
+        <button @onclick="Delete">Delete</button>
+    </div>
+}
 
 @code {
+    private bool Loading;
 
+    [Parameter]
+    public int Id { get; set; }
+
+    private Models.BusinessCustomer.BusinessCustomerDetails Customer;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Loading = true;
+
+        Customer = await BusinessCustomerService.GetById(Id);
+
+        Loading = false;
+    }
+
+    private void Update()
+    {
+        BusinessCustomerService.Update(Customer);
+    }
+
+    private void Delete()
+    {
+        BusinessCustomerService.Delete(Id);
+        Navi.NavigateTo("/BusinessCustomer");
+    }
 }

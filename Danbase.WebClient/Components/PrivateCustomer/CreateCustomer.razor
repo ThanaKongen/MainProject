@@ -1,9 +1,17 @@
 ﻿@page "/PrivateCustomer/Create"
-@inject IPrivateCustomerService PrivateCustomerService 
+@inject IPrivateCustomerService PrivateCustomerService
+@inject NavigationManager Navi
 @using DanBase.Shared.CustomerModels.Command
 
 <h3>CreateCustomer</h3>
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+
 <div class="form-group">
+    <button @onclick="Create">Create</button>
     <label>Company Id</label>
     <input class="form-control" type="text" id="CompanyId" @bind="customer.CompanyId" />
     <label>First name</label>
@@ -22,13 +30,56 @@
     <input class="form-control" type="text" id="Account" @bind="customer.AccountNo" />
 </div>
 
-<button @onclick="Create">Create</button>
 @code {
 
     PrivateCustomerCommandDto.AddCustomer customer = new PrivateCustomerCommandDto.AddCustomer();
+    private List<Models.PrivateCustomer.PrivateCustomerDetails> Customer;
+    private List<Models.PrivateCustomer.PrivateCustomerDetails> Filtered = new List<Models.PrivateCustomer.PrivateCustomerDetails>();
 
-    void Create()
+    private bool Loading;
+
+    async void Create()
     {
+        Loading = true;
         PrivateCustomerService.Create(customer);
+        await GetCreatedCustomer();
+        GoToAddress();
+        Loading = false;
+    }
+
+    private async Task GetCreatedCustomer()
+    {
+        System.Threading.Thread.Sleep(1000);
+        //await Task.Delay(5000);
+        Customer = await PrivateCustomerService.GetAll();
+    }
+
+    private List<Models.PrivateCustomer.PrivateCustomerDetails> GetFilteredCustomer()
+    {
+        Filtered = Customer.Where(x => x != null
+      && x.companyId == customer.CompanyId
+      && x.firstName == customer.FirstName
+      && x.lastName == customer.LastName
+      && x.cpr == customer.CPR
+      && x.username == customer.Username
+      && x.password == customer.Password
+      && x.text == customer.Text
+      && x.accountNo == customer.AccountNo
+      ).ToList();
+
+        return Filtered;
+    }
+
+    private void GoToAddress()
+    {
+        if (Customer != null)
+        {
+
+            foreach (var CreatedCustomer in GetFilteredCustomer())
+            {
+
+                Navi.NavigateTo($"/PrivateCustomer/AddAddress/{CreatedCustomer.id}");
+            }
+        }
     }
 }

@@ -20,6 +20,10 @@ namespace Danbase.WebClient.Services
 
         IJSRuntime Js;
 
+        public PrivateCustomerService()
+        {
+
+        }
         public PrivateCustomerService(HttpClient _client, IConfiguration _configuration, NavigationManager _navigationManager)
         {
             Client = _client;
@@ -40,14 +44,15 @@ namespace Danbase.WebClient.Services
             if (Response.IsSuccessStatusCode)
             {
 
-                await Js.InvokeVoidAsync("alert", $"Kunden er nu oprettet!");
+               await Js.InvokeVoidAsync("alert", $"Kunden er nu oprettet!");
             }
             else
             {
-                await Js.InvokeVoidAsync("alert", $"Noget gik galt! Prøv igen.");
+               await Js.InvokeVoidAsync("alert", $"Noget gik galt! Prøv igen.");
             }
 
         }
+
         public async Task<List<Models.PrivateCustomer.PrivateCustomerDetails>> GetAll()
         {
             try
@@ -101,6 +106,22 @@ namespace Danbase.WebClient.Services
             else
             {
                 await Js.InvokeVoidAsync("alert", $"Noget gik galt! Prøv igen.");
+            }
+        }
+
+        public async Task Delete(int Id)
+        {
+            try
+            {
+                var Response = await Client.DeleteAsync
+                    (
+                        $"PrivateCustomer/Delete?Id={Id}"
+                    );
+            }
+            catch (Exception e)
+            {
+
+                throw e;
             }
         }
     }

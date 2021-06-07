@@ -1,5 +1,70 @@
-﻿<h3>GetAllCustomers</h3>
+﻿@inject IBusinessCustomerService BusinessCustomerService
+@inject NavigationManager NavigationManager
+
+@if (Loading == true)
+{
+    <i class="fa fa-circle-o-notch fa-spin myicons" aria-hidden="true"></i>
+}
+
+@if (Customer != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>CompanyId</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>CVR</td>
+                <td>EAN</td>
+                <td>WWW</td>
+                <td>Vatcode</td>
+                <td>DebitorNo</td>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Text</td>
+                <td>Account</td>
+                <td>Created</td>
+                <td>LastUpdated</td>
+            </tr>
+        </thead>
+        @foreach (var Customer in Customer)
+        {
+    <tr>
+        <td><a href="/BusinessCustomer/@Customer.Id">@Customer.Id</a></td>
+        <td>@Customer.CompanyId</td>
+        <td>@Customer.FirstName</td>
+        <td>@Customer.LastName</td>
+        <td>@Customer.CVR</td>
+        <td>@Customer.EAN</td>
+        <td>@Customer.WWW</td>
+        <td>@Customer.Vatcode</td>
+        <td>@Customer.DebitorNo</td>
+        <td>@Customer.Username</td>
+        <td>@Customer.Password</td>
+        <td>@Customer.Text</td>
+        <td>@Customer.AccountNo</td>
+        <td>@Customer.Created</td>
+        <td>@Customer.LastUpdated</td>
+    </tr>
+        }
+
+    </table>
+}
 
 @code {
+    private bool Loading;
+
+    private List<Models.BusinessCustomer.BusinessCustomerDetails> Customer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Loading = true;
+
+        Customer = await BusinessCustomerService.GetAll();
+
+        Loading = false;
+    }
+
 
 }

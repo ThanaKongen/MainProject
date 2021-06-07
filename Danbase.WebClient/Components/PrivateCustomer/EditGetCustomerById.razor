@@ -1,5 +1,7 @@
 ﻿@page "/PrivateCustomer/{Id:int}"
 @inject IPrivateCustomerService PrivateCustomerService
+@inject IAddressService AddresService
+@inject NavigationManager Navi
 @using DanBase.Shared.CustomerModels.Command
 
 
@@ -30,6 +32,18 @@
         <input class="form-control" type="text" id="Text" @bind="Customer.text" @onblur="Update" />
         <label>Account</label>
         <input class="form-control" type="text" id="Account" @bind="Customer.accountNo" @onblur="Update" />
+        @foreach (var address in GetFilteredList())
+        {
+            <label>Street</label>
+            <input class="form-control" type="text" id="Account" @bind="address.Street" @onblur="UpdateAddress" />
+            <label>Zip</label>
+            <input class="form-control" type="text" id="Account" @bind="address.Zip" @onblur="UpdateAddress"/>
+            <label>City</label>
+            <input class="form-control" type="text" id="Account" @bind="address.City" @onblur="UpdateAddress"/>
+            <label>Country</label>
+            <input class="form-control" type="text" id="Account" @bind="address.Country" @onblur="UpdateAddress"/>
+        }
+        <button @onclick="Delete">Delete</button>
     </div>
 }
 
@@ -40,6 +54,15 @@
     public int Id { get; set; }
 
     private Models.PrivateCustomer.PrivateCustomerDetails Customer;
+    private List<Models.Address> Addresses;
+    private List<Models.Address> FilterAddress = new List<Models.Address>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Loading = true;
+        Addresses = await AddresService.GetAll();
+        Loading = false;
+    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -53,5 +76,36 @@
     private void Update()
     {
         PrivateCustomerService.Update(Customer);
+
+    }
+
+    private void Delete()
+    {
+        PrivateCustomerService.Delete(Id);
+        Navi.NavigateTo("PrivateCustomer");
+    }
+
+    public List<Models.Address> GetFilteredList()
+    {
+        FilterAddress = Addresses.Where(x => x != null
+          && x.CustomerId == Id).ToList();
+
+        return FilterAddress;
+    }
+
+    private void UpdateAddress()
+    {
+        foreach (var Address in GetFilteredList())
+        {
+            AddresService.Update(Address);
+        }
+    }
+
+    private void DeleteAddress()
+    {
+        foreach (var Address in GetFilteredList())
+        {
+            AddresService.Delete(Address.Id);
+        }
     }
 }

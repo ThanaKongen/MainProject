@@ -1,5 +1,42 @@
-﻿<h3>CreateCustomer</h3>
+﻿@page "/Business/Create"
+@inject IBusinessCustomerService BusinessCustomerService
+@using DanBase.Shared.CustomerModels.Command
 
+<h3>CreateCustomer</h3>
+<div class="form-group">
+    <label>Company Id</label>
+    <input class="form-control" type="text" id="CompanyId" @bind="Customer.CompanyId" />
+    <label>First name</label>
+    <input class="form-control" type="text" id="FirstName" @bind="Customer.FirstName" />
+    <label>Last name</label>
+    <input class="form-control" type="text" id="LastName" @bind="Customer.LastName" />
+    <label>CVR</label>
+    <input class="form-control" type="text" id="CPR" @bind="Customer.CVR" />
+    <label>EAN</label>
+    <input class="form-control" type="text" id="CPR" @bind="Customer.EAN" />
+    <label>WWWW</label>
+    <input class="form-control" type="text" id="CPR" @bind="Customer.WWW" />
+    <label>Vatcode</label>
+    <input class="form-control" type="text" id="CPR" @bind="Customer.VatCode" />
+    <label>DebitorNo</label>
+    <input class="form-control" type="text" id="CPR" @bind="Customer.DebitorNo" />
+    <label>User name</label>
+    <input class="form-control" type="text" id="UserName" @bind="Customer.Username" />
+    <label>Password</label>
+    <input class="form-control" type="password" id="Password" @bind="Customer.Password" />
+    <label>Text</label>
+    <input class="form-control" type="text" id="Text" @bind="Customer.Text" />
+    <label>Account</label>
+    <input class="form-control" type="text" id="Account" @bind="Customer.AccountNo" />
+</div>
+
+<button @onclick="Create">Create</button>
 @code {
 
+    BusinessCustomerCommandDto.AddCustomer Customer = new BusinessCustomerCommandDto.AddCustomer();
+
+    void Create()
+    {
+        BusinessCustomerService.Create(Customer);
+    }
 }
